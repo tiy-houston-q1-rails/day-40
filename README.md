@@ -13,6 +13,7 @@ Rails class Product in the "money" rails app such that:
 
 There is a test for Product, so you can make sure it works by running `rake`
 
+Notes: [Rails Guides Validations](http://guides.rubyonrails.org/active_record_validations.html#numericality)
 
 Today
 -----
