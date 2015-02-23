@@ -1,0 +1,40 @@
+<h1><%= @product.name %></h1>
+
+<p>
+  Price: <%= number_to_currency @product.price %>
+</p>
+
+
+<%= form_tag charges_path, method: :post, id: 'payment-form' do %>
+
+  <%= hidden_field_tag :product_id, @product.id %>
+
+  <span class="payment-errors"></span>
+
+  <%= label_tag :name %>
+  <%= text_field_tag :name %>
+  <br/>
+
+  <%= label_tag :email %>
+  <%= text_field_tag :email %>
+  <br/>
+
+  <%= label_tag :credit_card_number %>
+  <%= text_field_tag :credit_card_number, "", data: {stripe: "number"} %>
+  <br/>
+
+  <%= label_tag :cvc %>
+  <%= text_field_tag :cvc, "", data: {stripe: "cvc"} %>
+  <br/>
+
+  <%= label_tag :expiration_month %>
+  <%= select_tag :expiration_month, options_for_select((1..12)),  data: {stripe: "exp-month"} %>
+  <br/>
+
+  <%= label_tag :expiration_year %>
+  <%= select_tag :expiration_year, options_for_select((Date.today.year..(Date.today.year + 7))),  data: {stripe: "exp-year"} %>
+  <br/>
+
+  <%= submit_tag "Charge Me" %>
+
+<% end %>
