@@ -5,6 +5,24 @@
 </p>
 
 
+
+<%= form_tag charges_path, method: :post  do %>
+  <%= hidden_field_tag :product_id, @product.id %>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_1r906xeyrpHSZOXiaYktI4nx"
+    data-name="Macs not Hacks"
+    data-description="<%= @product.name %>"
+    data-amount="<%= @product.price_in_cents %>">
+  </script>
+
+<% end %>
+
+
+<hr/>
+
+
 <%= form_tag charges_path, method: :post, id: 'payment-form' do %>
 
   <%= hidden_field_tag :product_id, @product.id %>
